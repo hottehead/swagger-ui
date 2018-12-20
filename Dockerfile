@@ -19,6 +19,7 @@ COPY ./docker/nginx.conf /etc/nginx/
 COPY ./dist/* /usr/share/nginx/html/
 COPY ./docker/run.sh /usr/share/nginx/
 COPY ./docker/configurator /usr/share/nginx/configurator
+COPY ./docker/.htpasswd /etc/apache2/.htpasswd
 
 RUN chmod +x /usr/share/nginx/run.sh
 

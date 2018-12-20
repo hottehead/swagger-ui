@@ -61,8 +61,8 @@ const ui = SwaggerUIBundle({
 You can pull a pre-built docker image of the swagger-ui directly from Docker Hub:
 
 ```
-docker pull swaggerapi/swagger-ui
-docker run -p 80:8080 swaggerapi/swagger-ui
+docker pull hottehead/swagger-ui
+docker run -p 80:8080 hottehead/swagger-ui
 ```
 
 Will start nginx with swagger-ui on port 80.
@@ -70,7 +70,7 @@ Will start nginx with swagger-ui on port 80.
 Or you can provide your own swagger.json on your host
 
 ```
-docker run -p 80:8080 -e SWAGGER_JSON=/foo/swagger.json -v /bar:/foo swaggerapi/swagger-ui
+docker run -p 80:8080 -e SWAGGER_JSON=api.json -v /bar:/usr/share/nginx/html/src hottehead/swagger-ui
 ```
 
 The base URL of the web application can be changed by specifying the `BASE_URL` environment variable:

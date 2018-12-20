@@ -3,6 +3,7 @@
 set -e
 BASE_URL=${BASE_URL:-/}
 NGINX_ROOT=/usr/share/nginx/html
+SPECS_ROOT=src
 INDEX_FILE=$NGINX_ROOT/index.html
 
 node /usr/share/nginx/configurator $INDEX_FILE
@@ -29,9 +30,8 @@ fi
 
 replace_in_index myApiKeyXXXX123456789 $API_KEY
 
-if [[ -f $SWAGGER_JSON ]]; then
-  cd $NGINX_ROOT ; ln -s $(dirname $SWAGGER_JSON)/* .
-  REL_PATH="./$(basename $SWAGGER_JSON)"
+if [[ -f "${NGINX_ROOT}/${SPECS_ROOT}/${SWAGGER_JSON}" ]]; then
+  REL_PATH="./${SPECS_ROOT}/${SWAGGER_JSON}"
   sed -i "s|https://petstore.swagger.io/v2/swagger.json|$REL_PATH|g" $INDEX_FILE
   sed -i "s|http://example.com/api|$REL_PATH|g" $INDEX_FILE
 fi
